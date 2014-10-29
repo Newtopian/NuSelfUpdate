@@ -9,7 +9,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.CheckForUpdateScenarios
 {
     public class NoPackagesHaveEverBeenPublished
     {
-        Version _installedVersion;
+        SemanticVersion _installedVersion;
         IEnumerable<IPackage> _packages;
         AppUpdater _updater;
         IUpdateCheck _updateCheck;
@@ -17,7 +17,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.CheckForUpdateScenarios
 
         void GivenAnInstalledVersion()
         {
-            _installedVersion = new Version(1, 0, 0, 0);
+            _installedVersion = new SemanticVersion( new Version(1, 0, 0, 0));
         }
 
         void AndGivenNoNewerPackagesHaveBeenPublishedWithTheAppPackageId()

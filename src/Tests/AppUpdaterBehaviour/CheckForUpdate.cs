@@ -1,5 +1,4 @@
-using Bddify;
-using Bddify.Core;
+using TestStack.BDDfy;
 using NUnit.Framework;
 using NuSelfUpdate.Tests.AppUpdaterBehaviour.CheckForUpdateScenarios;
 
@@ -14,25 +13,25 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour
         [Test]
         public void NoPackagesHaveEverBeenPublished()
         {
-            new NoPackagesHaveEverBeenPublished().Bddify();
+            new NoPackagesHaveEverBeenPublished().BDDfy();
         }
 
         [Test]
         public void NoUpdatesAvailable()
         {
-            new NoUpdatesAvailable().Bddify();
+            new NoUpdatesAvailable().BDDfy();
         }
 
         [Test]
         public void ASingleUpdateIsAvailable()
         {
-            new ASinlgeUpdateIsAvailable().Bddify();
+            new ASinlgeUpdateIsAvailable().BDDfy();
         }
 
         [Test]
         public void MultipleUpdatesAreAvailable()
         {
-            new MultipleUpdatesAreAvailable().Bddify();
+            new MultipleUpdatesAreAvailable().BDDfy();
         }
     }
 }

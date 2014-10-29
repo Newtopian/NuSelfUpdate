@@ -1,5 +1,6 @@
 ﻿using System;
 using NSubstitute;
+using NuGet;
 using NuSelfUpdate.Tests.Helpers;
 using Shouldly;
 
@@ -7,7 +8,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.LaunchInstalledUpdateScenarios
 {
     public class NoCommandLineArguments
     {
-        Version _installedVersion;
+        SemanticVersion _installedVersion;
         AppUpdater _appUpdater;
         InstalledUpdate _installedUpdate;
         InstalledUpdate _returnedInstalledUpdate;
@@ -17,7 +18,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.LaunchInstalledUpdateScenarios
 
         void GivenTheAppWasRunWithNoArguments()
         {
-            _installedVersion = new Version(1, 0);
+            _installedVersion = new SemanticVersion(new Version(1, 0));
             _builder = new AppUpdaterBuilder(TestConstants.AppPackageId)
                 .SetupWithTestValues(_installedVersion);
 
@@ -35,7 +36,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.LaunchInstalledUpdateScenarios
 
         void AndGivenAnInstalledUpdate()
         {
-            _installedUpdate = new InstalledUpdate(_installedVersion, new Version(2, 0));
+            _installedUpdate = new InstalledUpdate(_installedVersion, new SemanticVersion(new Version(2, 0)));
         }
 
         void WhenLaunchInstalledUpdateIsCalled()

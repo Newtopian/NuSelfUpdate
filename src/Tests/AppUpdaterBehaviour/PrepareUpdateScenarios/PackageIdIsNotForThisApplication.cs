@@ -8,14 +8,14 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.PrepareUpdateScenarios
 {
     public class PackageIdIsNotForThisApplication
     {
-        Version _installedVersion;
+        SemanticVersion _installedVersion;
         AppUpdater _appUpdater;
         IPackage _incorrectPackage;
         Exception _exception;
 
         void GivenAnInstalledVersion()
         {
-            _installedVersion = new Version(1, 0);
+            _installedVersion = new SemanticVersion(new Version(1, 0));
         }
 
         void AndGivenAnAppUpdater()
@@ -27,7 +27,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.PrepareUpdateScenarios
 
         void AndGivenAPackageWithANewerVersionNumberButAnIdOtherThanTheAppsId()
         {
-            _incorrectPackage = Packages.FromVersions("Not.Target.Id", new Version(1, 1)).First();
+            _incorrectPackage = Packages.FromVersions("Not.Target.Id", new SemanticVersion(new Version(1, 1))).First();
         }
 
         void WhenTheUpdateIsPrepared()
@@ -37,7 +37,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.PrepareUpdateScenarios
 
         void ThenAnArgumentExceptionWillBeThrown()
         {
-            _exception.ShouldBeTypeOf<ArgumentException>();
+            _exception.ShouldBeOfType<ArgumentException>();
             ((ArgumentException)_exception).ParamName.ShouldBe("package");
         }
     }

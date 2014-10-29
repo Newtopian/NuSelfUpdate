@@ -11,7 +11,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.PrepareUpdateScenarios
 {
     public class AValidPackageIsProvided
     {
-        Version _installedVersion;
+        SemanticVersion _installedVersion;
         AppUpdater _appUpdater;
         IPackage _package;
         IEnumerable<IPackageFile> _appFiles;
@@ -22,7 +22,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.PrepareUpdateScenarios
 
         void GivenAnInstalledVersion()
         {
-            _installedVersion = new Version(1, 0);
+            _installedVersion = new SemanticVersion(new Version(1, 0));
         }
 
         void AndGivenAnAppUpdater()
@@ -37,7 +37,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.PrepareUpdateScenarios
 
         void AndGivenAPackageForANewerVersionOfTheApp()
         {
-            _package = Packages.FromVersions(TestConstants.AppPackageId, new Version(1, 1)).Single();
+            _package = Packages.FromVersions(TestConstants.AppPackageId, new SemanticVersion(new Version(1, 1))).Single();
             _appFiles = GetAppFileSubstitutes("app", "app.exe", "app.exe.config", "nuget.dll", @"content\logo.png").ToArray();
             _otherFiles = GetAppFileSubstitutes("", "README.md").ToArray();
 

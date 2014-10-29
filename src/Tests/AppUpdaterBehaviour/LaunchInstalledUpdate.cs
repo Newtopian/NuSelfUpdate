@@ -1,5 +1,4 @@
-using Bddify;
-using Bddify.Core;
+using TestStack.BDDfy;
 using NUnit.Framework;
 using NuSelfUpdate.Tests.AppUpdaterBehaviour.LaunchInstalledUpdateScenarios;
 
@@ -14,31 +13,31 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour
         [Test]
         public void NoCommandLineArguments()
         {
-            new NoCommandLineArguments().Bddify();
+            new NoCommandLineArguments().BDDfy();
         }
 
         [Test]
         public void CommandLineArgumentsWithoutSpaces()
         {
-            new CommandLineArgumentsWithoutSpaces().Bddify();
+            new CommandLineArgumentsWithoutSpaces().BDDfy();
         }
 
         [Test]
         public void CommandLineArgumentsWithSpaces()
         {
-            new CommandLineArgumentsWithSpaces().Bddify();
+            new CommandLineArgumentsWithSpaces().BDDfy();
         }
 
         [Test]
         public void ExePathContainsSpaces()
         {
-            new ExePathContainsSpaces().Bddify();
+            new ExePathContainsSpaces().BDDfy();
         }
 
         [Test]
         public void InstalledUpdateIsNull()
         {
-            new InstalledUpdateIsNull().Bddify();
+            new InstalledUpdateIsNull().BDDfy();
         }
     }
 }

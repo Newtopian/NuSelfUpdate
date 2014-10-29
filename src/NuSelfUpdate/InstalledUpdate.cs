@@ -1,13 +1,14 @@
 ﻿using System;
+using NuGet;
 
 namespace NuSelfUpdate
 {
     public class InstalledUpdate
     {
-        public Version OldVersion { get; private set; }
-        public Version NewVersion { get; private set; }
+        public SemanticVersion OldVersion { get; private set; }
+        public SemanticVersion NewVersion { get; private set; }
 
-        public InstalledUpdate(Version old, Version newVersion)
+        public InstalledUpdate(SemanticVersion old, SemanticVersion newVersion)
         {
             if (old >= newVersion)
                 throw new BackwardUpdateException(old, newVersion);

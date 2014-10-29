@@ -8,14 +8,14 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.PrepareUpdateScenarios
 {
     public class PackageIsForTheVersionWhichIsCurrentlyInstalled
     {
-        Version _installedVersion;
+        SemanticVersion _installedVersion;
         AppUpdater _appUpdater;
         IPackage _currentVersionPacakge;
         Exception _exception;
 
         void GivenAnInstalledVersion()
         {
-            _installedVersion = new Version(1, 0);
+            _installedVersion = new SemanticVersion(new Version(1, 0));
         }
 
         void AndGivenAnAppUpdater()
@@ -37,7 +37,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.PrepareUpdateScenarios
 
         void ThenABackwardUpdateExceptionWillBeThrown()
         {
-            _exception.ShouldBeTypeOf<BackwardUpdateException>();
+            _exception.ShouldBeOfType<BackwardUpdateException>();
             var backwardUpdate = (BackwardUpdateException) _exception;
             backwardUpdate.InstalledVersion.ShouldBe(_installedVersion);
             backwardUpdate.TargetVersion.ShouldBe(_installedVersion);

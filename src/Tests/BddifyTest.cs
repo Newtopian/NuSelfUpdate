@@ -1,4 +1,4 @@
-using Bddify;
+using TestStack.BDDfy;
 using NUnit.Framework;
 using System;
 using NuSelfUpdate.Tests.Helpers;
@@ -12,7 +12,7 @@ namespace NuSelfUpdate.Tests
         [Test]
         public void VerifyBehaviour()
         {
-            this.Bddify();
+            this.BDDfy();
         }
     }
 }

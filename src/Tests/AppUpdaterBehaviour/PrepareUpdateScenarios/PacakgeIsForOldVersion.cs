@@ -8,14 +8,14 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.PrepareUpdateScenarios
 {
     public class PacakgeIsForOldVersion
     {
-        Version _installedVersion;
+        SemanticVersion _installedVersion;
         AppUpdater _appUpdater;
         IPackage _oldVersionPackage;
         Exception _exception;
 
         void GivenAnInstalledVersion()
         {
-            _installedVersion = new Version(1, 0);
+            _installedVersion = new SemanticVersion(new Version(1, 0));
         }
 
         void AndGivenAnAppUpdater()
@@ -27,7 +27,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.PrepareUpdateScenarios
 
         void AndGivenAPackageForAnOlderVersion()
         {
-            _oldVersionPackage = Packages.FromVersions(TestConstants.AppPackageId, new Version(0,1)).Single();
+            _oldVersionPackage = Packages.FromVersions(TestConstants.AppPackageId, new SemanticVersion(new Version(0,1))).Single();
         }
 
         void WhenTheUpdateIsPrepared()
@@ -37,7 +37,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.PrepareUpdateScenarios
 
         void ThenABackwardUpdateExceptionWillBeThrown()
         {
-            _exception.ShouldBeTypeOf<BackwardUpdateException>();
+            _exception.ShouldBeOfType<BackwardUpdateException>();
             var backwardUpdate = (BackwardUpdateException) _exception;
             backwardUpdate.InstalledVersion.ShouldBe(_installedVersion);
             backwardUpdate.TargetVersion.ShouldBe(_oldVersionPackage.Version);

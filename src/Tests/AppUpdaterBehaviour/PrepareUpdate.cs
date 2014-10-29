@@ -1,5 +1,4 @@
-using Bddify;
-using Bddify.Core;
+using TestStack.BDDfy;
 using NUnit.Framework;
 using NuSelfUpdate.Tests.AppUpdaterBehaviour.PrepareUpdateScenarios;
 
@@ -14,31 +13,31 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour
         [Test]
         public void NoPackageIsProvided()
         {
-            new NoPackageIsProvided().Bddify();
+            new NoPackageIsProvided().BDDfy();
         }
 
         [Test]
         public void PackageIdIsNotForThisApplication()
         {
-            new PackageIdIsNotForThisApplication().Bddify();
+            new PackageIdIsNotForThisApplication().BDDfy();
         }
 
         [Test]
         public void PackageIsForAVersionOlderThanTheCurrentlyInstalledVersion()
         {
-            new PacakgeIsForOldVersion().Bddify();
+            new PacakgeIsForOldVersion().BDDfy();
         }
 
         [Test]
         public void PackageIsForTheVersionWhichIsCurrentlyInstalled()
         {
-            new PackageIsForTheVersionWhichIsCurrentlyInstalled().Bddify();
+            new PackageIsForTheVersionWhichIsCurrentlyInstalled().BDDfy();
         }
 
         [Test]
         public void AValidPackageIsProvided()
         {
-            new AValidPackageIsProvided().Bddify();
+            new AValidPackageIsProvided().BDDfy();
         }
     }
 }

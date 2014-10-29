@@ -9,9 +9,9 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.CheckForUpdateScenarios
 {
     public class MultipleUpdatesAreAvailable
     {
-        Version _installedVersion;
-        Version _newVersion;
-        Version _newestVersion;
+        SemanticVersion _installedVersion;
+        SemanticVersion _newVersion;
+        SemanticVersion _newestVersion;
         IEnumerable<IPackage> _packages;
         AppUpdater _updater;
         IUpdateCheck _updateCheck;
@@ -19,13 +19,13 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.CheckForUpdateScenarios
 
         void GivenAnInstalledVersion()
         {
-            _installedVersion = new Version(1, 0);
+            _installedVersion = new SemanticVersion(new Version(1, 0));
         }
 
         void AndGivenAPackageForMultipleNewerVersionHasBeenPublished()
         {
-            _newVersion = new Version(1, 1);
-            _newestVersion = new Version(1, 2);
+            _newVersion = new SemanticVersion(new Version(1, 1));
+            _newestVersion = new SemanticVersion(new Version(1, 2));
             _packages = Packages.FromVersions(TestConstants.AppPackageId, _installedVersion, _newVersion, _newestVersion).ToList();
 
             _builder = new AppUpdaterBuilder(TestConstants.AppPackageId)

@@ -8,7 +8,7 @@ namespace NuSelfUpdate.Tests.Helpers
 {
     public static class TestAppUpdateBuilderExtensions
     {
-        public static AppUpdaterBuilder SetupWithTestValues(this AppUpdaterBuilder builder, Version installedVersion)
+        public static AppUpdaterBuilder SetupWithTestValues(this AppUpdaterBuilder builder, SemanticVersion installedVersion)
         {
             var versionProvider = Substitute.For<IAppVersionProvider>();
             versionProvider.CurrentVersion.Returns(installedVersion);

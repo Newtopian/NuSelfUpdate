@@ -18,6 +18,11 @@ namespace NuSelfUpdate.Tests.Helpers
             Deleted = new HashSet<string>();
         }
 
+        public DateTimeOffset GetLastAccessed(string path)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual ILogger Logger
         {
             get
@@ -70,6 +75,11 @@ namespace NuSelfUpdate.Tests.Helpers
             Deleted.Add(path);
         }
 
+        public IEnumerable<string> GetFiles(string path, string filter, bool recursive)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual string GetFullPath(string path)
         {
             return Path.Combine(Root, path);
@@ -107,9 +117,19 @@ namespace NuSelfUpdate.Tests.Helpers
             Deleted.Add(path);
         }
 
+        public void DeleteFiles(IEnumerable<IPackageFile> files, string rootDir)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual bool FileExists(string path)
         {
             return Paths.ContainsKey(path);
+        }
+
+        public Stream CreateFile(string path)
+        {
+            throw new NotImplementedException();
         }
 
         public virtual Stream OpenFile(string path)
@@ -145,6 +165,11 @@ namespace NuSelfUpdate.Tests.Helpers
                         .Distinct();
         }
 
+        public void MakeFileWritable(string path)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual void MoveFile(string sourcePath, string destinationPath)
         {
             Func<Stream> factory;
@@ -175,6 +200,16 @@ namespace NuSelfUpdate.Tests.Helpers
             stream.CopyTo(ms);
             byte[] buffer = ms.ToArray();
             Paths[path] = () => new MemoryStream(buffer);
+        }
+
+        public void AddFile(string path, Action<Stream> writeToStream)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddFiles(IEnumerable<IPackageFile> files, string rootDir)
+        {
+            throw new NotImplementedException();
         }
 
         public virtual void AddFile(string path, Func<Stream> getStream)

@@ -1,5 +1,4 @@
-using Bddify;
-using Bddify.Core;
+using TestStack.BDDfy;
 using NUnit.Framework;
 using NuSelfUpdate.Tests.AppUpdaterBehaviour.OldVersionExistsScenarios;
 
@@ -14,13 +13,13 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour
         [Test]
         public void NoOldVersionExists()
         {
-            new NoOldVersionExists().Bddify();
+            new NoOldVersionExists().BDDfy();
         }
 
         [Test]
         public void AnOldVersionExists()
         {
-            new AnOldVersionExists().Bddify();
+            new AnOldVersionExists().BDDfy();
         }
     }
 }

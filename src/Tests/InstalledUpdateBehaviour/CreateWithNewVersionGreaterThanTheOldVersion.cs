@@ -1,22 +1,23 @@
 ﻿using System;
+using NuGet;
 using Shouldly;
 
 namespace NuSelfUpdate.Tests.InstalledUpdateBehaviour
 {
     public class CreateWithNewVersionGreaterThanTheOldVersion : BddifyTest
     {
-        Version _oldVersion;
-        Version _newVersion;
+        SemanticVersion _oldVersion;
+        SemanticVersion _newVersion;
         InstalledUpdate _installedUpdate;
 
         void GivenAnOldVersion()
         {
-            _oldVersion = new Version(1, 0);
+            _oldVersion = new SemanticVersion(new Version(1, 0));
         }
 
         void AndGivenANewVersionThatIsGreaterThanTheOld()
         {
-            _newVersion = new Version(2, 0);
+            _newVersion = new SemanticVersion(new Version(2, 0));
         }
 
         void WhenAttemptingToCreateAnInstalledUpdateWithThoseVersions()

@@ -1,4 +1,5 @@
 ﻿using System;
+using NuGet;
 using NuSelfUpdate.Tests.Helpers;
 using Shouldly;
 
@@ -18,7 +19,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.LaunchInstalledUpdateScenarios
         void AndGivenAnAppUpdater()
         {
             _appUpdater = new AppUpdaterBuilder(TestConstants.AppPackageId)
-                .SetupWithTestValues(new Version(1, 0))
+                .SetupWithTestValues(new SemanticVersion(new Version(1, 0)))
                 .Build();
         }
 
@@ -30,7 +31,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.LaunchInstalledUpdateScenarios
         void ThenAnArgumentNullExceptionWillBeThrown()
         {
             _exception.ShouldNotBe(null);
-            _exception.ShouldBeTypeOf<ArgumentNullException>();
+            _exception.ShouldBeOfType<ArgumentNullException>();
             var argEx = (ArgumentNullException) _exception;
             argEx.ParamName.ShouldBe("installedUpdate");
         }

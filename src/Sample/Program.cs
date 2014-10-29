@@ -10,6 +10,7 @@ namespace NuSelfUpdate.Sample
         static void Main(string[] args)
         {
             var appUpdater = new AppUpdaterBuilder("NuSelfUpdate.Sample")
+                
                 .SourceUpdatesFrom(FullPath("packages"))
                 .Build();
 

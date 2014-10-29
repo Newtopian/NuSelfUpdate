@@ -8,7 +8,7 @@ namespace NuSelfUpdate.Tests.Helpers
 {
     public static class Packages
     {
-        public static IEnumerable<IPackage> FromVersions(string packageId, params Version[] versions)
+        public static IEnumerable<IPackage> FromVersions(string packageId, params SemanticVersion[] versions)
         {
             var maxVersion = versions.Max();
 

@@ -1,5 +1,4 @@
-using Bddify;
-using Bddify.Core;
+using TestStack.BDDfy;
 using NUnit.Framework;
 using NuSelfUpdate.Tests.AppUpdaterBehaviour.RemoveOldVersionFilesScenarios;
 
@@ -14,19 +13,19 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour
         [Test]
         public void OldFilesExist()
         {
-            new OldFilesExist().Bddify();
+            new OldFilesExist().BDDfy();
         }
 
         [Test]
         public void OldDirectoryExistsButDoesNotContainFiles()
         {
-            new OldDirectoryExistsButDoesNotContainFiles().Bddify();
+            new OldDirectoryExistsButDoesNotContainFiles().BDDfy();
         }
 
         [Test]
         public void OldFilesDoNotExist()
         {
-            new OldFilesDoNotExist().Bddify();
+            new OldFilesDoNotExist().BDDfy();
         }
     }
 }

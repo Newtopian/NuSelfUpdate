@@ -1,9 +1,10 @@
 ﻿using System;
+using NuGet;
 
 namespace NuSelfUpdate
 {
     public interface IAppVersionProvider
     {
-        Version CurrentVersion { get; }
+        SemanticVersion CurrentVersion { get; }
     }
 }

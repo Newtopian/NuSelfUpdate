@@ -1,4 +1,5 @@
 ﻿using System;
+using NuGet;
 using NuSelfUpdate.Tests.Helpers;
 using Shouldly;
 
@@ -6,18 +7,18 @@ namespace NuSelfUpdate.Tests.InstalledUpdateBehaviour
 {
     public class CreateWithNewVersionEqualToOldVersion : BddifyTest
     {
-        Version _oldVersion;
-        Version _newVersion;
+        SemanticVersion _oldVersion;
+        SemanticVersion _newVersion;
         Exception _exception;
 
         void GivenAnOldVersion()
         {
-            _oldVersion = new Version(1, 0);
+            _oldVersion =new SemanticVersion(new Version(1, 0));
         }
 
         void AndGivenANewVersionThatIsTheSameAsTheOld()
         {
-            _newVersion = new Version(1, 0);
+            _newVersion = new SemanticVersion(new Version(1, 0));
         }
 
         void WhenAttemptingToCreateAnInstalledUpdateWithThoseVersions()
@@ -28,7 +29,7 @@ namespace NuSelfUpdate.Tests.InstalledUpdateBehaviour
         void ThenABackwardUpdateExceptionWillBeThrown()
         {
             _exception.ShouldNotBe(null);
-            _exception.ShouldBeTypeOf<BackwardUpdateException>();
+            _exception.ShouldBeOfType<BackwardUpdateException>();
             var backwardUpdateEx = (BackwardUpdateException) _exception;
             backwardUpdateEx.InstalledVersion.ShouldBe(_oldVersion);
             backwardUpdateEx.TargetVersion.ShouldBe(_newVersion);

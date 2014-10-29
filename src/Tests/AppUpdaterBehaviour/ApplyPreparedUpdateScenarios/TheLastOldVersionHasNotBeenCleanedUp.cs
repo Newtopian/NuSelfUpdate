@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using NSubstitute;
+using NuGet;
 using NuSelfUpdate.Tests.Helpers;
 using Shouldly;
 
@@ -9,17 +10,17 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.ApplyPreparedUpdateScenarios
 {
     public class TheLastOldVersionHasNotBeenCleanedUp : BaseApplyUpdateScenario
     {
-        Version _preUpdateVersion;
+        SemanticVersion _preUpdateVersion;
         string _appFile;
         IPreparedUpdate _preparedUpdate;
-        Version _newVersion;
+        SemanticVersion _newVersion;
         AppUpdater _appUpdater;
         string _cruftFile;
         AppUpdaterBuilder _builder;
 
         void GivenAnInstalledVersion()
         {
-            _preUpdateVersion = new Version(1, 0);
+            _preUpdateVersion = new SemanticVersion(new Version(1, 0));
             _builder = new AppUpdaterBuilder(TestConstants.AppPackageId)
                 .SetupWithTestValues(_preUpdateVersion);
 
@@ -32,7 +33,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.ApplyPreparedUpdateScenarios
 
         void AndGivenThereIsAnOldCopyStillInOldDirectoryAlongWithACruftFile()
         {
-            var oldVersion = new Version(0, 9);
+            var oldVersion = new SemanticVersion(new Version(0, 9));
             _cruftFile = "cruft.dll";
             FileSystem.AddFile(Path.Combine(OldDir, _cruftFile), MockFileContent(_cruftFile, oldVersion));
             FileSystem.AddFile(Path.Combine(OldDir, _appFile), MockFileContent(_appFile, oldVersion));
@@ -41,7 +42,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.ApplyPreparedUpdateScenarios
         void AndGivenAPreparedUpdateForANewerVersion()
         {
             _preparedUpdate = Substitute.For<IPreparedUpdate>();
-            _newVersion = new Version(1, 1);
+            _newVersion = new SemanticVersion(new Version(1, 1));
             _preparedUpdate.Version.Returns(_newVersion);
 
             FileSystem.CreateDirectory(@"c:\app\.updates\1.1");

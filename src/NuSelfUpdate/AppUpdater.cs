@@ -38,7 +38,7 @@ namespace NuSelfUpdate
             }
         }
 
-        public Version CurrentVersion
+        public SemanticVersion CurrentVersion
         {
             get { return _appVersionProvider.CurrentVersion; }
         }
@@ -56,8 +56,11 @@ namespace NuSelfUpdate
 
         public IPreparedUpdate PrepareUpdate(IPackage package)
         {
-            if (package == null || package.Id != _appPackageId)
+            if (package == null)
                 throw new ArgumentNullException("package");
+            
+            if(package.Id != _appPackageId)
+                throw new ArgumentException(String.Format("Parameter Package ID {0} does not match expected package ID {1}", package.Id, _appPackageId), "package");
 
             AssertCanUpdate(package.Version);
 
@@ -142,7 +145,7 @@ namespace NuSelfUpdate
             return Path.Combine(pathSegments.AsEnumerable().Reverse().ToArray());
         }
 
-        void AssertCanUpdate(Version targetVersion)
+        void AssertCanUpdate(SemanticVersion targetVersion)
         {
             if (targetVersion <= CurrentVersion)
                 throw new BackwardUpdateException(CurrentVersion, targetVersion);

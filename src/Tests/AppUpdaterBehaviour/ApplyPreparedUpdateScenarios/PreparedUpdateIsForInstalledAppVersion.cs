@@ -1,5 +1,6 @@
 ﻿using System;
 using NSubstitute;
+using NuGet;
 using NuSelfUpdate.Tests.Helpers;
 using Shouldly;
 
@@ -7,14 +8,14 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.ApplyPreparedUpdateScenarios
 {
     public class PreparedUpdateIsForInstalledAppVersion
     {
-        Version _installedVersion;
+        SemanticVersion _installedVersion;
         IPreparedUpdate _preparedUpdate;
         Exception _exception;
         AppUpdater _appUpdater;
 
         void GivenAnInstaledVersion()
         {
-            _installedVersion = new Version(1, 1);
+            _installedVersion = new SemanticVersion(new Version(1, 1));
         }
 
         void AndGivenAPreparedUpdateForTheInstalledVersion()
@@ -37,7 +38,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.ApplyPreparedUpdateScenarios
 
         void ThenABackwardUpdateExceptionWillBeThrown()
         {
-            _exception.ShouldBeTypeOf<BackwardUpdateException>();
+            _exception.ShouldBeOfType<BackwardUpdateException>();
             var backwardUpdate = (BackwardUpdateException)_exception;
 
             backwardUpdate.InstalledVersion.ShouldBe(_installedVersion);

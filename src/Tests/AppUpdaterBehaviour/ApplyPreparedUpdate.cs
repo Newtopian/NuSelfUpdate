@@ -1,5 +1,4 @@
-using Bddify;
-using Bddify.Core;
+using TestStack.BDDfy;
 using NUnit.Framework;
 using NuSelfUpdate.Tests.AppUpdaterBehaviour.ApplyPreparedUpdateScenarios;
 
@@ -14,25 +13,25 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour
         [Test]
         public void PreparedUpdateIsANewerVerion()
         {
-            new PreparedUpdateIsANewerVerion().Bddify();
+            new PreparedUpdateIsANewerVerion().BDDfy();
         }
 
         [Test]
         public void PreparedUpdateIsForAnOlderAppVersion()
         {
-            new PreparedUpdateIsForAnOlderAppVersion().Bddify();
+            new PreparedUpdateIsForAnOlderAppVersion().BDDfy();
         }
 
         [Test]
         public void PreparedUpdateIsForInstalledAppVersion()
         {
-            new PreparedUpdateIsForInstalledAppVersion().Bddify();
+            new PreparedUpdateIsForInstalledAppVersion().BDDfy();
         }
 
         [Test]
         public void TheLastOldVersionHasNotBeenCleanedUp()
         {
-            new TheLastOldVersionHasNotBeenCleanedUp().Bddify();
+            new TheLastOldVersionHasNotBeenCleanedUp().BDDfy();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using NuGet;
 using NuSelfUpdate.Tests.Helpers;
 using Shouldly;
 
@@ -7,7 +8,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.RemoveOldVersionFilesScenarios
 {
     public class OldFilesExist : BaseRemoveOldVerisionFilesScenario
     {
-        Version _installedVersion;
+        SemanticVersion _installedVersion;
         MockFileSystem _fileSystem;
         string[] _appFiles;
         AppUpdater _appUpdater;
@@ -15,7 +16,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.RemoveOldVersionFilesScenarios
 
         void GivenAnApplicationDirectoryContainingAppFiles()
         {
-            _installedVersion = new Version(1, 0);
+            _installedVersion = new SemanticVersion(new Version(1, 0));
             _builder = new AppUpdaterBuilder(TestConstants.AppPackageId)
                 .SetupWithTestValues(_installedVersion);
 
@@ -29,7 +30,7 @@ namespace NuSelfUpdate.Tests.AppUpdaterBehaviour.RemoveOldVersionFilesScenarios
 
         void AndGivenAndOldVersionOfTheAppExistsInTheOldDirectory()
         {
-            var oldVersion = new Version(0, 9);
+            var oldVersion = new SemanticVersion(new Version(0, 9));
 
             foreach (var file in _appFiles)
                 _fileSystem.AddFile(Path.Combine(OldDir, file), MockFileContent(file, _installedVersion));
