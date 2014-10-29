@@ -76,19 +76,13 @@ task Compile {
 }
 
 task PreparePackageFiles -depends Compile {
-	Copy-Item "$buildartifacts_dir\Nuget.Core.dll" "$prepPackageApp_dir\Nuget.Core.dll"
-	Copy-Item "$buildartifacts_dir\NuSelfUpdate.Sample.exe" "$prepPackageApp_dir\NuSelfUpdate.Sample.exe"
-	Copy-Item "$buildartifacts_dir\NuSelfUpdate.dll" "$prepPackageApp_dir\NuSelfUpdate.dll"
-	Copy-Item "$buildartifacts_dir\System.Reactive.dll" "$prepPackageApp_dir\System.Reactive.dll"
+	Copy-Item "$buildartifacts_dir\*.*" "$prepPackageApp_dir\"
 	
 	Copy-Item "$base_dir\src\Sample\NuSelfUpdate.Sample.nuspec" "$prepPackage_dir\NuSelfUpdate.Sample.nuspec"
 }
 
 task CopyRunningSampleFiles -depends Compile {
-	Copy-Item "$buildartifacts_dir\Nuget.Core.dll" "$sample_dir\Nuget.Core.dll"
-	Copy-Item "$buildartifacts_dir\NuSelfUpdate.Sample.exe" "$sample_dir\NuSelfUpdate.Sample.exe"
-	Copy-Item "$buildartifacts_dir\NuSelfUpdate.dll" "$sample_dir\NuSelfUpdate.dll"
-	Copy-Item "$buildartifacts_dir\System.Reactive.dll" "$sample_dir\System.Reactive.dll"
+	Copy-Item "$buildartifacts_dir\*.*" "$sample_dir\"
 }
 
 task BuildPackage -depends PreparePackageFiles {

@@ -31,13 +31,13 @@ task Compile -depends Init {
 }
 
 task Test -depends Compile {
-	$nunitVersion = (ls "$packages_dir\NUnit*").Name
+	$nunitVersion = (ls "$packages_dir\NUnit.Runners*").Name
 	$nunitExe = "$packages_dir\$nunitVersion\tools\nunit-console.exe"
 	$nunitArguments = "$buildartifacts_dir\NuSelfUpdate.Tests.dll /xml=$buildoutput_dir\TestResults.xml"
 		
 	$p = start-process $nunitExe $nunitArguments -PassThru -Wait -NoNewWindow -RedirectStandardOutput "$buildoutput_dir\NUnitOutput.txt"		
-	Move-Item "$buildartifacts_dir\bddify.html" "$buildoutput_dir"
-	Move-Item "$buildartifacts_dir\bddify.css" "$buildoutput_dir"
+	Move-Item "$buildartifacts_dir\BDDfy.html" "$buildoutput_dir"
+	
 	
 	if ($p.ExitCode -ne 0) {
 		throw "Tests failed see $buildoutput_dir\NUnitOutput.txt"
